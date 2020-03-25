@@ -26,7 +26,7 @@
                 }
                 <DxUpload Name="ImageUpload" FileUploaded="@((args) => OnFileUploaded(args, ((CellEditContext)context)))"
                           UploadUrl="@GetUploadUrl("/api/Upload/UploadFile/")" ChunkSize="20000"
-                          ShowFileList="false"></DxUpload>
+                          ShowFileList="false" AllowedFileExtensions="@(new List<string> { ".jpg", ".jpeg", ".gif", ".png" })"></DxUpload>
             </EditTemplate>
         </DxDataGridColumn>
     </DxDataGrid>
