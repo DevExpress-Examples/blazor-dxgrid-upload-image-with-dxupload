@@ -1,0 +1,55 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+@using UsingUploadEditDataGrid.Data
+@inject TestModelSevice _testModelSevice
+@inject FileUrlStorageService _fileUrlStorageService
+
+<div style="width:650px">
+    <DxDataGrid DataAsync="@_testModelSevice.GetDataSourceAsync" ShowFilterRow=false KeyFieldName="ID"
+                RowRemovingAsync="@OnRowRemoving"
+                RowUpdatingAsync="@OnRowUpdating"
+                RowInsertingAsync="@OnRowInserting" ShowPager="false">
+        <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+        <DxDataGridColumn Field=@nameof(TestModel.Name)></DxDataGridColumn>
+        <DxDataGridColumn Field=@nameof(TestModel.ImageUrl) Caption="Image">
+            <DisplayTemplate>
+                @{
+                    string url = (context as TestModel).ImageUrl;
+                    <img style="max-width:300px" src="@url" />
+                }
+            </DisplayTemplate>
+            <EditTemplate>
+                @if(((CellEditContext)context).CellValue != null) {
+                    string url = ((CellEditContext)context).CellValue.ToString();
+                    <img style="max-width:300px" src="@url" />
+                }
+                <DxUpload Name="ImageUpload" FileUploaded="@((args) => OnFileUploaded(args, ((CellEditContext)context)))"
+                          UploadUrl="@GetUploadUrl("/api/Upload/UploadFile/")" ChunkSize="20000"
+                          ShowFileList="false"></DxUpload>
+            </EditTemplate>
+        </DxDataGridColumn>
+    </DxDataGrid>
+</div>
+@code {
+    async Task OnRowRemoving(TestModel dataItem) {
+        await _testModelSevice.Remove(dataItem);
+    }
+    async Task OnRowUpdating(TestModel dataItem, IDictionary<string, object> newValue) {
+        await _testModelSevice.Update(dataItem, newValue);
+    }
+    async Task OnRowInserting(IDictionary<string, object> newValue) {
+        await _testModelSevice.Insert(newValue);
+    }
+    protected string GetUploadUrl(string url) {
+        return NavigationManager.ToAbsoluteUri(url).AbsoluteUri;
+    }
+    protected void OnFileUploaded(FileUploadEventArgs args, CellEditContext context) {
+        var fileUrl = _fileUrlStorageService.Get(Guid.Parse(args.FileInfo.Guid));
+        context.OnChanged(fileUrl);
+    }
+    public class ResponseResult
+    {
+        public string fileUrl { get; set; }
+    }
+}
