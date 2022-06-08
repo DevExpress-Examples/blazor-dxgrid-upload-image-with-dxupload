@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using UsingUploadEditDataGrid.Data;
 
-namespace UsingUploadEditDataGrid.Controllers
-{
-    public class ChunkMetadata
-    {
+namespace UsingUploadEditDataGrid.Controllers {
+    public class ChunkMetadata {
         public int Index { get; set; }
         public int TotalCount { get; set; }
         public int FileSize { get; set; }
-        public string FileName { get; set; }
-        public string FileType { get; set; }
-        public string FileGuid { get; set; }
+        public string? FileName { get; set; }
+        public string? FileType { get; set; }
+        public string? FileGuid { get; set; }
     }
     [Route("api/[controller]")]
-    public class UploadController : ControllerBase
-    {
+    public class UploadController : Controller {
         private readonly IWebHostEnvironment _hostingEnvironment;
         FileUrlStorageService _fileUrlStorageService;
         public UploadController(IWebHostEnvironment hostingEnvironment, FileUrlStorageService fileUrlStorageService) {
@@ -53,7 +43,7 @@ namespace UsingUploadEditDataGrid.Controllers
                     }
                 }
             }
-            catch(Exception ex) {
+            catch (Exception ex) {
                 return BadRequest();
             }
             return Ok();
