@@ -15,15 +15,15 @@
         public Task<IEnumerable<TestModel>> GetDataSourceAsync(CancellationToken ct = default) {
             return Task.FromResult(DataSource.AsEnumerable());
         }
-        List<TestModel> InsertInternal(IDictionary<string, object> newValue) {
+        List<TestModel> InsertInternal(TestModel itemModel) {
             var dataItem = new TestModel();
-            Update(dataItem, newValue);
+            Update(dataItem, itemModel);
             dataItem.ID = DataSource.OrderBy(m => m.ID).LastOrDefault().ID + 1;
             DataSource.Add(dataItem);
             return DataSource;
         }
-        public Task<List<TestModel>> Insert(IDictionary<string, object> newValue) {
-            return Task.FromResult(InsertInternal(newValue));
+        public Task<List<TestModel>> Insert(TestModel itemModel) {
+            return Task.FromResult(InsertInternal(itemModel));
         }
         List<TestModel> RemoveInternal(TestModel dataItem) {
             DataSource.Remove(dataItem);
@@ -32,21 +32,13 @@
         public Task<List<TestModel>> Remove(TestModel dataItem) {
             return Task.FromResult(RemoveInternal(dataItem));
         }
-        List<TestModel> UpdateInternal(TestModel dataItem, IDictionary<string, object> newValue) {
-            foreach (var field in newValue.Keys) {
-                switch (field) {
-                    case "Name":
-                        dataItem.Name = (string)newValue[field];
-                        break;
-                    case "ImageUrl":
-                        dataItem.ImageUrl = (string)newValue[field];
-                        break;
-                }
-            }
+        List<TestModel> UpdateInternal(TestModel dataItem, TestModel itemModel) {
+            dataItem.Name = itemModel.Name;
+            dataItem.ImageUrl = itemModel.ImageUrl;
             return DataSource;
         }
-        public Task<List<TestModel>> Update(TestModel dataItem, IDictionary<string, object> newValue) {
-            return Task.FromResult(UpdateInternal(dataItem, newValue));
+        public Task<List<TestModel>> Update(TestModel dataItem, TestModel itemModel) {
+            return Task.FromResult(UpdateInternal(dataItem, itemModel));
         }
     }
 }
