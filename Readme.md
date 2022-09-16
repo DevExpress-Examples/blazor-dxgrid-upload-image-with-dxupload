@@ -6,7 +6,8 @@
 
 # Grid for Blazor - How to use DxUpload component to upload images to the grid
 
-This example demonstrates how to use [DxUpload](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxUpload) component inside the grid edit form template to upload images to the server and then display them in the grid.
+This example demonstrates how to use the [DxUpload](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxUpload) component inside the grid edit form template to upload images to the server and then display them in the grid.
+
 
 ![Edit form with DxUpload component](grid-edit-form.png)
 
@@ -20,7 +21,8 @@ In this example, the data source contains paths to images that are maintained on
 </DxGridDataColumn>
 ```
 
-The grid's edit form template ([EditFormTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.EditFormTemplate)) contains [DxUpload](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxUpload) component that allows you to upload images to the server. 
+The grid edit form template ([EditFormTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.EditFormTemplate)) contains [DxUpload](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxUpload) component that allows you to upload images to the server. 
+
 
 ```razor
 <EditFormTemplate Context="EditFormContext">
