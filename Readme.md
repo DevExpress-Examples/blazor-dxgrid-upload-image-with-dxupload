@@ -8,7 +8,7 @@
 
 This example demonstrates how to use [DxUpload](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxUpload) component inside the grid edit form template to upload images to the server and then display them in the grid.
 
-![Edit form on a separate page](grid-edit-form.png)
+![Edit form with DxUpload component](grid-edit-form.png)
 
 In this example, the data source contains paths to images that are maintained on the server. [DxGrid](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid) displays the images in the cell template ([CellDisplayTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.CellDisplayTemplate)).
 
