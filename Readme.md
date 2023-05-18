@@ -66,4 +66,4 @@ protected void OnFileUploaded(FileUploadEventArgs args, TestModel item) {
 
 ## Documentation
 
-* [Edit Data and Validate Input](http://docs.devexpress.devx/Blazor/403454/grid/edit-data-and-validate-input)
+* [Edit Data and Validate Input](http://docs.devexpress.com/Blazor/403454/grid/edit-data-and-validate-input)
