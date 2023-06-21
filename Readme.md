@@ -31,7 +31,7 @@ The grid edit form template ([EditFormTemplate](https://docs.devexpress.com/Blaz
     }
     <DxFormLayout CssClass="w-100">
         <DxFormLayoutItem Caption="Name:">
-            <DxTextBox @bind-Text="@item.Name" />
+            @EditFormContext.GetEditor("Name")
         </DxFormLayoutItem>
         <DxFormLayoutItem>
             <img style="max-width:300px" src="@item.ImageUrl" />
