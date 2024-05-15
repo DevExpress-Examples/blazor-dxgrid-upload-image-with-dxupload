@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using UsingUploadEditDataGrid.Data;
 
 namespace UsingUploadEditDataGrid.Controllers {
@@ -30,7 +32,7 @@ namespace UsingUploadEditDataGrid.Controllers {
 
             try {
                 if (!string.IsNullOrEmpty(chunkMetadata)) {
-                    var metaDataObject = JsonConvert.DeserializeObject<ChunkMetadata>(chunkMetadata);
+                    var metaDataObject = JsonSerializer.Deserialize<ChunkMetadata>(chunkMetadata);
                     var tempFilePath = Path.Combine(tempPath, metaDataObject.FileGuid + ".tmp");
                     if (!Directory.Exists(tempPath))
                         Directory.CreateDirectory(tempPath);
