@@ -18,7 +18,7 @@ The Data Grid was moved to maintenance support mode. No new features/capabilitie
 
 This example illustrates how to upload a new image using the DxUpload component, save it to the server's folder and save the path to the corresponding image in the edited grid's row.
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-grid-upload-image-with-upload-control&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-grid-upload-image-with-upload-control&~~~was_helpful=no)
 
